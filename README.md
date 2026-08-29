@@ -8,12 +8,13 @@ The objective was to identify revenue trends, high-performing products, category
 ---
 
 ## 🛠️ Tech Stack & Methodology
-- **BI & Visualization:** Microsoft Power BI
-- **Data Transformation:** Power Query
-- **Data Modeling:** Star Schema with a dedicated Calendar dimension[cite: 3]
-- **Analytics:** DAX (Data Analysis Expressions)[cite: 3]
+- **Data Cleaning & Preparation:** Microsoft Excel (reconciliation, data formatting, initial validation)
+- **BI & Visualization:** Microsoft Power BI Desktop
+- **ETL Transformation:** Power Query (type casting, schema validation)
+- **Data Modeling:** Star Schema with a dedicated dynamic `Calendar` dimension[cite: 3]
+- **Analytics & Calculations:** DAX (Data Analysis Expressions)[cite: 3]
 - **Dataset:** Superstore retail transactional data[cite: 3]
-- **Key Techniques:** Data cleaning, data modeling, KPI development, time-series analysis, profitability analysis, interactive filtering
+- **Key Techniques:** Spreadsheet data cleaning, star-schema data modeling, KPI development, time-series analysis, profitability analysis, interactive filtering
 
 ---
 
@@ -105,7 +106,8 @@ DISTINCTCOUNT ( 'Sample - Superstore'[Order ID] )
 ---
 
 ## 📈 Business Impact
-The analysis demonstrates how Power BI can transform raw transactional data into actionable business intelligence by:
+The analysis demonstrates how raw transactional data can be cleaned and structured to drive business intelligence by:
+* Cleaning, reconciling, and structuring transactional records in Excel
 * Identifying revenue and profit trends[cite: 3]
 * Detecting loss-making product categories[cite: 3]
 * Comparing regional profitability[cite: 3]
@@ -116,7 +118,7 @@ The analysis demonstrates how Power BI can transform raw transactional data into
 ---
 
 ## 🎯 Skills Demonstrated
-`Power BI` • `DAX` • `Power Query` • `Data Cleaning` • `Data Modeling` • `KPI Development` • `Business Intelligence` • `Data Visualization` • `Profitability Analysis` • `Time-Series Analysis` • `Business Recommendations`
+`Microsoft Excel` • `Power BI` • `DAX` • `Power Query` • `Data Cleaning` • `Data Modeling` • `KPI Development` • `Business Intelligence` • `Data Visualization` • `Profitability Analysis` • `Time-Series Analysis` • `Business Recommendations`
 
 ---
 
