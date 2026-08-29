@@ -1,31 +1,32 @@
-Markdown
 # Superstore Retail Sales & Profitability Analytics Dashboard
 
 ## 📌 Project Overview
-An end-to-end data analytics and business intelligence project evaluating multi-year retail transactional performance across 5,000+ distinct orders ($2.30M gross revenue, $286.4K net profit). 
+An end-to-end Data Analytics & Business Intelligence project analyzing multi-year retail transactional data across 5,000+ distinct orders, generating **$2.30M in sales** and **$286.4K in profit**[cite: 3].
 
-The primary objective is to analyze revenue trends over time, identify high-revenue and top-selling products, evaluate category and regional profitability, and formulate data-driven strategic recommendations to optimize enterprise profit margins.
+The objective was to identify revenue trends, high-performing products, category and regional profitability patterns, and key opportunities to improve overall profit margins through data-driven business recommendations[cite: 3].
 
 ---
 
 ## 🛠️ Tech Stack & Methodology
-- **Analytics & BI Platform:** Microsoft Power BI Desktop
-- **Data Transformation:** Power Query (data cleaning, type casting, schema validation)
-- **Data Modeling:** Star Schema architecture with an independent, dynamic `Calendar` dimension table
-- **Calculations:** DAX (Data Analysis Expressions) for dynamic business metrics and KPI tracking
+- **BI & Visualization:** Microsoft Power BI
+- **Data Transformation:** Power Query
+- **Data Modeling:** Star Schema with a dedicated Calendar dimension[cite: 3]
+- **Analytics:** DAX (Data Analysis Expressions)[cite: 3]
+- **Dataset:** Superstore retail transactional data[cite: 3]
+- **Key Techniques:** Data cleaning, data modeling, KPI development, time-series analysis, profitability analysis, interactive filtering
 
 ---
 
 ## 📊 Dashboard Preview
 ![Dashboard Preview](Dashboard_overview.png)
 
-### Dashboard Structure:
-1. **Executive KPI Scorecard:** `Total Orders (5,009)`, `Total Profit ($286.4K)`, `Total Sales ($2.30M)`, and `Net Profit Margin (12.47%)`.
-2. **Top 10 Products by Revenue (Horizontal Bar Chart):** Ranks the top revenue-generating SKUs, led by enterprise printing and copying systems.
-3. **Monthly Sales & Profit Trend (Line & Clustered Column Chart):** Tracks monthly volume and profitability cycles to evaluate seasonal performance.
-4. **Profitability by Sub-Category (Conditional Bar Chart):** Visually differentiates profit drivers (Green) from chronic loss leaders (Red).
-5. **Profits & Sales by Region (Clustered Bar Chart):** Evaluates geographic revenue volume vs. profit conversion across West, East, South, and Central territories.
-6. **Interactive Slicers:** Dynamic filters for `Year`, `Region`, and `Segment` for ad-hoc scenario analysis.
+### Dashboard Components
+- **Executive KPI Scorecard:** `Total Orders: 5,009`, `Total Sales: $2.30M`, `Total Profit: $286.4K`, `Net Profit Margin: 12.47%`[cite: 3]
+- **Top 10 Products by Revenue:** Identifies the highest revenue-generating products[cite: 3].
+- **Monthly Sales & Profit Trend:** Highlights seasonality, revenue patterns, and profitability trends[cite: 3].
+- **Profitability by Sub-Category:** Identifies major profit drivers and loss-making sub-categories[cite: 3].
+- **Sales & Profit by Region:** Compares geographic revenue performance and profit conversion[cite: 3].
+- **Interactive Slicers:** Year, Region, and Segment
 
 ---
 
@@ -33,9 +34,12 @@ The primary objective is to analyze revenue trends over time, identify high-reve
 
 ```dax
 -- Dedicated Calendar Dimension Table
-Calendar = 
+Calendar =
 ADDCOLUMNS (
-    CALENDAR ( MIN ( 'Sample - Superstore'[Order Date] ), MAX ( 'Sample - Superstore'[Order Date] ) ),
+    CALENDAR (
+        MIN ( 'Sample - Superstore'[Order Date] ),
+        MAX ( 'Sample - Superstore'[Order Date] )
+    ),
     "Year", YEAR ( [Date] ),
     "Month", FORMAT ( [Date], "mmm" ),
     "Month Number", MONTH ( [Date] ),
@@ -43,46 +47,95 @@ ADDCOLUMNS (
     "Quarter", "Q" & FORMAT ( [Date], "q" )
 )
 
--- Core Financial Measures
-Total Sales = SUM ( 'Sample - Superstore'[Sales] )
-Total Profit = SUM ( 'Sample - Superstore'[Profit] )
-Profit Margin = DIVIDE ( [Total Profit], [Total Sales], 0 )
-Total Orders = DISTINCTCOUNT ( 'Sample - Superstore'[Order ID] )
-🔍 Key Analytical Findings
-1. Revenue Trends & Seasonality
-Q4 Annual Surge: Sales and transaction volume consistently peak between September and December, with November ($352K) and December ($325K) generating peak annual volume due to corporate year-end procurement and holiday demand.  
-PDF
+-- Core Business Measures
+Total Sales =
+SUM ( 'Sample - Superstore'[Sales] )
 
-Q1 Contraction: January ($94K) and February ($59K) represent recurring demand troughs, dropping by over 55% compared to Q4 peaks.  
-PDF
+Total Profit =
+SUM ( 'Sample - Superstore'[Profit] )
 
-March Procurement Spike: A reliable spring surge occurs consistently every March ($205K sales, $30K profit).  
-PDF
+Profit Margin =
+DIVIDE ( [Total Profit], [Total Sales], 0 )
 
-2. Top-Selling & High-Value Products
-Top Revenue SKU: Canon imageCLASS 2200 Advanced Copier generates $61,599.82 in total revenue and serves as the single largest profit driver[cite: 3].
+Total Orders =
+DISTINCTCOUNT ( 'Sample - Superstore'[Order ID] )
+```
 
-High-Value Office Systems: Fellowes PB500 Electric Punch Binding Machine ($27.5K) and Cisco TelePresence System EX90 ($22.6K) drive top-line volume[cite: 3].
+---
 
-3. Category & Regional Diagnostics
-Profit Drivers: Technology (17.39% margin) and Office Supplies (17.03% margin) serve as the primary profit engines, led by Copiers (37.20% margin) and Paper (43.39% margin)[cite: 3].
+## 🔍 Key Analytical Findings
 
-Profit Leaks: The Furniture category suffers severe margin compression (2.49% net margin) caused by heavy net losses in Tables (-$17,725) and Bookcases (-$3,473) due to excessive promotional discounting (>20–40%)[cite: 3].
+### 1. Revenue Trends & Seasonality
+* **Q4 Sales Surge:** Sales consistently increase from September through December, with November ($352K) and December ($325K) recording the highest monthly sales[cite: 3].
+* **Q1 Contraction:** January ($94K) and February ($59K) represent significant seasonal troughs compared with Q4[cite: 3].
+* **March Procurement Spike:** March consistently shows a strong increase, reaching approximately $205K in sales and $30K in profit[cite: 3].
 
-Regional Disparities: The West (14.94% margin) and East (13.48% margin) lead the company in profitability, while the Central region lags at 7.92% margin due to aggressive price discounting in key metro markets[cite: 3].
+### 2. Top-Selling & High-Value Products
+* **Top Revenue Product:** *Canon imageCLASS 2200 Advanced Copier* — $61.6K revenue[cite: 3].
+* **Fellowes PB500 Electric Punch Binding Machine:** Approximately $27.5K revenue[cite: 3].
+* **Cisco TelePresence System EX90:** Approximately $22.6K revenue[cite: 3].
 
-💡 Strategic Business Recommendations
-Implement Hard Discount Caps on Furniture: Enforce a hard system constraint capping maximum allowable discounts on Furniture at 15% to eliminate negative-margin orders, recovering an estimated $15,000–$18,000 in annual bottom-line profit[cite: 3].
+*These products represent important contributors to overall revenue and should be evaluated for inventory availability and targeted enterprise sales.*
 
-Deploy High-Margin Product Bundling: Bundle high-margin hardware (Copiers at 37.2% margin) with recurring high-margin office consumables (Paper at 43.4% margin) through multi-quarter corporate contracts[cite: 3].
+### 3. Category & Regional Diagnostics
+* **Profit Drivers:**
+  * Technology — 17.39% margin[cite: 3]
+  * Office Supplies — 17.03% margin[cite: 3]
+  * Copiers — 37.20% margin[cite: 3]
+  * Paper — 43.39% margin[cite: 3]
+* **Profit Leaks:**
+  * Furniture has significantly lower profitability at approximately 2.49% margin, primarily driven by losses in:
+    * Tables — -$17.7K[cite: 3]
+    * Bookcases — -$3.5K[cite: 3]
+* **Regional Performance:**
+  * West — 14.94% margin[cite: 3]
+  * East — 13.48% margin[cite: 3]
+  * Central — 7.92% margin[cite: 3]
+  * *The Central region shows a significant profitability gap compared with leading regions[cite: 3].*
 
-Restructure Regional Sales Incentives: Transition Central territory sales commission models from Gross Revenue Volume to Gross Margin Realized, disincentivizing excessive price slashing[cite: 3].
+---
 
-Counter Q1 Seasonal Slumps: Introduce early-bird annual contract renewals in late Q4 with scheduled Q1 replenishment delivery rebates to smooth annual revenue volatility[cite: 3].
+## 💡 Strategic Business Recommendations
 
-📁 Repository Structure
-├── Business_Sales_Profitability_Report.pdf  # Comprehensive 3-page executive advisory report
-├── Dashboard_overview.png                  # High-resolution dashboard overview snapshot
-├── Sample - Superstore.csv                 # Raw transactional dataset (CSV)
-├── Super Store sales.pbix                  # Full interactive Power BI Desktop model
-└── README.md                               # Project documentation & analysis brief
+1. **Control Furniture Discounting:** Introduce stricter discount thresholds for Furniture products, particularly Tables and Bookcases, to reduce negative-margin transactions and improve category profitability[cite: 3].
+2. **Bundle High-Margin Products:** Create corporate bundles combining high-margin Copiers with recurring office consumables such as Paper, encouraging larger and longer-term customer contracts[cite: 3].
+3. **Optimize Regional Sales Incentives:** Shift sales incentives from revenue-based targets toward profit-margin-based KPIs, particularly in lower-margin regions such as Central[cite: 3].
+4. **Address Q1 Seasonality:** Introduce early renewal campaigns and scheduled Q1 replenishment programs during late Q4 to reduce seasonal revenue volatility[cite: 3].
+
+---
+
+## 📈 Business Impact
+The analysis demonstrates how Power BI can transform raw transactional data into actionable business intelligence by:
+* Identifying revenue and profit trends[cite: 3]
+* Detecting loss-making product categories[cite: 3]
+* Comparing regional profitability[cite: 3]
+* Highlighting high-value products[cite: 3]
+* Supporting pricing and discount decisions[cite: 3]
+* Providing executives with an interactive KPI dashboard[cite: 3]
+
+---
+
+## 🎯 Skills Demonstrated
+`Power BI` • `DAX` • `Power Query` • `Data Cleaning` • `Data Modeling` • `KPI Development` • `Business Intelligence` • `Data Visualization` • `Profitability Analysis` • `Time-Series Analysis` • `Business Recommendations`
+
+---
+
+## 📁 Repository Structure
+```
+├── Business_Sales_Profitability_Report.pdf
+├── Dashboard_overview.png
+├── Sample - Superstore.csv
+├── Super Store sales.pbix
+└── README.md
+```
+
+---
+
+## 👤 Author & Acknowledgments
+* **Author:** Katti Pramod Herald
+* **Role:** Data Science & Analytics Intern
+* **Internship Program:** Future Interns
+* **LinkedIn:** [linkedin.com/in/k-pramod-herald-92a27b295](https://www.linkedin.com/in/k-pramod-herald-92a27b295)
+* **GitHub:** [github.com/Kp-herald](https://github.com/Kp-herald)
+
+*Special thanks to the Future Interns team for providing the guidance and dataset for this analytical evaluation.*
